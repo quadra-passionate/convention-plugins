@@ -28,18 +28,16 @@ class LibraryConventionPlugin : Plugin<Project> {
                 repositories {
                     maven {
                         name = "GitHubPackages"
-                        // url example below
-                        // `temp_org` and `temp_repo` must be replaced with your own one, respectively.
                         url = uri("https://maven.pkg.github.com/quadra-passionate/common-module")
 
                         credentials {
                             username = providers.gradleProperty("gpr.module.user")
                                 .orElse(providers.environmentVariable("GPR_MODULE_USER"))
-                                .orNull ?: error("GPR_MODULE_USER must be set in environment")
+                                .orNull
 
                             password = providers.gradleProperty("gpr.module.token")
                                 .orElse(providers.environmentVariable("GPR_MODULE_TOKEN"))
-                                .orNull ?: error("GPR_MODULE_USER must be set in environment")
+                                .orNull
                         }
                     }
                 }
